@@ -5,6 +5,7 @@
 ** Components (map, player)
 */
 
+#include <stdlib.h>
 #include <sys/ipc.h>
 #include "lemipc.h"
 

@@ -11,7 +11,7 @@
 #include <sys/shm.h>
 #include "lemipc.h"
 
-int **create_map(void *memory, int host)
+int **create_map(void *memory, bool host)
 {
     int **map = malloc(sizeof(int*) * MAP_HEIGHT * MAP_WIDTH);
 
@@ -33,11 +33,11 @@ int **load_map(player_t *player)
     if (shmid == -1) {
         player->shmid = shmget(player->key, (MAP_HEIGHT * MAP_WIDTH), IPC_CREAT | SHM_R | SHM_W);
         map = shmat(shmid, NULL, SHM_R | SHM_W);
-        map = create_map(map, 1);
+        map = create_map(map, true);
     } else {
         player->shmid = shmid;
         map = shmat(shmid, NULL, SHM_R | SHM_W);
-        map = create_map(map, 0);
+        map = create_map(map, false);
     }
     return (map);
 }

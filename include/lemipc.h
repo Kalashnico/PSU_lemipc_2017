@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <stdbool.h>
 #include <sys/types.h>
 
 #define HELP_USAGE "USAGE\n\t./lemipc PATH TEAM_NUMBER\n"
@@ -24,3 +25,9 @@ typedef struct player_s {
 	int posy;
 	int team;
 }	player_t;
+
+/* components.c */
+int init_components(char*, int);
+
+/* map.c */
+int **load_map(player_t*);
