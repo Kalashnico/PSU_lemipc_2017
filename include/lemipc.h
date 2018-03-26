@@ -30,4 +30,9 @@ typedef struct player_s {
 int init_components(char*, int);
 
 /* map.c */
+void display_map(int**);
 int **load_map(player_t*);
+
+/* player.c */
+player_t *create_player_sem(player_t*);
+player_t *init_player(player_t*, int);

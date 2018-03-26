@@ -9,15 +9,6 @@
 #include <sys/ipc.h>
 #include "lemipc.h"
 
-player_t *init_player(player_t *player, int team)
-{
-	player = malloc(sizeof(player_t));
-	if (player == NULL)
-		return (NULL);
-	player->team = team;
-	return (player);
-}
-
 int init_components(char *path, int team)
 {
 	int **map = NULL;
@@ -32,5 +23,7 @@ int init_components(char *path, int team)
 	map = load_map(player);
 	if (map == NULL)
 		return (84);
+	create_player_sem(player);
+	display_map(map);
 	return (0);
 }

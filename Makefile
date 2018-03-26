@@ -16,6 +16,7 @@ CFLAGS += -W -Wall -Wextra -Werror
 SRCS	= main.c		\
 	  map.c			\
 	  components.c		\
+	  player.c		\
 
 OBJS    = $(addprefix src/, $(SRCS:.c=.o))
 
