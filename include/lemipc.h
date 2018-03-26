@@ -31,6 +31,7 @@ int init_components(char*, int);
 
 /* map.c */
 void display_map(int**);
+void put_player_on_map(player_t*, int**);
 int **load_map(player_t*);
 
 /* player.c */

@@ -7,6 +7,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <time.h>
 #include <string.h>
 #include <stdio.h>
 #include <sys/shm.h>
@@ -21,6 +22,18 @@ void display_map(int **map)
 		printf("\n");
 	}
 	printf("------------------------------\n");
+}
+
+void put_player_on_map(player_t *player, int **map)
+{
+	if (map[player->posx][player->posy] == 0)
+		map[player->posx][player->posy] = player->team;
+	else {
+		srand(time(0));
+		player->posx = rand() % MAP_WIDTH;
+		player->posy = rand() % MAP_HEIGHT;
+		put_player_on_map(player, map);
+	}
 }
 
 int **create_map(void *memory, bool host)

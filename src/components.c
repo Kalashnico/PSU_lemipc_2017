@@ -24,6 +24,7 @@ int init_components(char *path, int team)
 	if (map == NULL)
 		return (84);
 	create_player_sem(player);
+	put_player_on_map(player, map);
 	display_map(map);
 	return (0);
 }
