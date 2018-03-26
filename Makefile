@@ -13,7 +13,8 @@ CFLAGS = -I./include
 CFLAGS += -W -Wall -Wextra -Werror
 #LDFLAGS =
 
-SRCS	= main.c		\
+SRCS	= map.c			\
+		  main.c		\
 
 OBJS    = $(addprefix src/, $(SRCS:.c=.o))
 
