@@ -57,4 +57,20 @@ int **load_map(player_t *player)
 		map = create_map(map, false);
 	}
 	return (map);
+
+bool has_won(int **map) {
+	int team = 0;
+
+	for (int x = 0; x < MAP_HEIGHT; ++x) {
+		for (int y = 0; y < MAP_WIDTH; ++y) {
+			if (map[x][y] != 0) {
+				if (team == 0)
+					team = map[x][y];
+				else if (team != map[x][y]) {
+					return (false);
+				}
+			}
+		}
+	}
+	return (true);
 }
