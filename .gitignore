@@ -1,3 +1,6 @@
 .vscode/c_cpp_properties.json
 *.o
 lemipc
+CMakeLists.txt
+.idea/
+cmake-build-debug/

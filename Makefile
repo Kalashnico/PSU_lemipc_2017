@@ -14,8 +14,8 @@ CFLAGS += -W -Wall -Wextra -Werror
 #LDFLAGS =
 
 SRCS	= main.c		\
-	  map.c			\
-	  components.c		\
+          map.c			\
+	      components.c		\
 
 OBJS    = $(addprefix src/, $(SRCS:.c=.o))
 
