@@ -16,11 +16,11 @@
 #define MAP_HEIGHT 20
 #define MAP_WIDTH 20
 
-typedef struct s_player {
+typedef struct player_s {
 	key_t key;
 	int shmid;
 	int semid;
 	int posx;
 	int posy;
 	int team;
-}	t_player;
+}	player_t;

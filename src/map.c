@@ -25,7 +25,7 @@ int **create_map(void *memory, int host)
     return (map);
 }
 
-int **load_map(t_player *player)
+int **load_map(player_t *player)
 {
     void *map;
     int shmid = shmget(player->key, (MAP_HEIGHT * MAP_WIDTH), SHM_R | SHM_W);
