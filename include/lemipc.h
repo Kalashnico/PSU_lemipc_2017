@@ -17,6 +17,13 @@
 #define MAP_HEIGHT 20
 #define MAP_WIDTH 20
 
+enum direction {
+	UP,
+	RIGHT,
+	LEFT,
+	DOWN
+};
+
 typedef struct player_s {
 	key_t key;
 	int shmid;
@@ -36,6 +43,10 @@ int has_won(int**);
 void display_map(int**);
 void put_player_on_map(player_t*, int**);
 int **load_map(player_t*);
+
+
+/* player_control.c */
+void	move_player(enum direction, player_t *, int **);
 
 /* player.c */
 bool check_killed(player_t*, int**);
