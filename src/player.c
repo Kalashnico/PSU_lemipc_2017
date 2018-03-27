@@ -61,14 +61,14 @@ int find_occurence(const int map[8], int value)
 bool check_killed(player_t *player, int **map)
 {
 	int occurence = 0;
-	int next_to[8] = {check_up(map, player),
-			check_right(map, player),
-			check_down(map, player),
-			check_left(map, player),
-			check_diag_up_right(map, player),
-			check_diag_down_right(map, player),
-			check_diag_down_left(map, player),
-			check_diag_up_left(map, player)};
+	int next_to[8] = {check_up(map, player->posx, player->posy),
+			check_right(map, player->posx, player->posy),
+			check_down(map, player->posx, player->posy),
+			check_left(map, player->posx, player->posy),
+			check_diag_up_right(map, player->posx, player->posy),
+			check_diag_down_right(map, player->posx, player->posy),
+			check_diag_down_left(map, player->posx, player->posy),
+			check_diag_up_left(map, player->posx, player->posy)};
 
 	for (int i = 0; i < 8; ++i) {
 		occurence = find_occurence(next_to, next_to[i]);

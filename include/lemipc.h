@@ -57,12 +57,12 @@ void check_possible_move(player_t*, int**);
 void	move_player(enum direction, player_t *, int **);
 
 /* check*.c */
-int check_diag_up_left(int **, player_t *);
-int check_diag_up_right(int **, player_t *);
-int check_diag_down_left(int **, player_t *);
-int check_diag_down_right(int **, player_t *);
+int check_diag_up_left(int **, int, int);
+int check_diag_up_right(int **, int, int);
+int check_diag_down_left(int **, int, int);
+int check_diag_down_right(int **, int, int);
 
-int check_up(int **, player_t *);
-int check_down(int **, player_t *);
-int check_right(int **, player_t *);
-int check_left(int **, player_t *);
+int check_up(int **, int, int);
+int check_down(int **, int, int);
+int check_right(int **, int, int);
+int check_left(int **, int, int);
