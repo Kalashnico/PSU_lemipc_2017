@@ -37,3 +37,15 @@ int **load_map(player_t*);
 /* player.c */
 player_t *create_player_sem(player_t*);
 player_t *init_player(player_t*, int);
+
+/* check*.c */
+int check_diag_up_left(int **, player_t *);
+int check_diag_up_right(int **, player_t *);
+int check_diag_down_left(int **, player_t *);
+int check_diag_down_right(int **, player_t *);
+
+int check_up(int **, player_t *);
+int check_down(int **, player_t *);
+int check_right(int **, player_t *);
+int check_left(int **, player_t *);
+
