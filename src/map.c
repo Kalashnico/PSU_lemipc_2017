@@ -18,14 +18,9 @@ int has_won(int **map)
 	int team = 0;
 
 	for (int x = 0; x < MAP_WIDTH; ++x) {
-		for (int y = 0; y < MAP_HEIGHT; ++y) {
-			if (map[x][y] != 0) {
-				if (team == 0)
-					team = map[x][y];
-				else if (team != map[x][y] && map[x][y] != 0)
-					return (0);
-			}
-		}
+		team = has_won_inner_loop(map, team, x);
+		if (team == -1)
+			return (0);
 	}
 	return (team);
 }

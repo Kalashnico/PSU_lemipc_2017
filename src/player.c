@@ -43,6 +43,7 @@ player_t *init_player(player_t *player, int team, char *path)
 	srand(time(0));
 	player->posx = rand() % MAP_WIDTH;
 	player->posy = rand() % MAP_HEIGHT;
+	player->last_dir = UNDEFINED;
 	player->is_host = false;
 	return (player);
 }
@@ -60,15 +61,17 @@ int find_occurence(const int map[8], int value)
 
 bool check_killed(player_t *player, int **map)
 {
+	int posx = player->posx;
+	int posy = player->posy;
 	int occurence = 0;
-	int next_to[8] = {check_up(map, player->posx, player->posy),
-			check_right(map, player->posx, player->posy),
-			check_down(map, player->posx, player->posy),
-			check_left(map, player->posx, player->posy),
-			check_diag_up_right(map, player->posx, player->posy),
-			check_diag_down_right(map, player->posx, player->posy),
-			check_diag_down_left(map, player->posx, player->posy),
-			check_diag_up_left(map, player->posx, player->posy)};
+	int next_to[8] = {check_up(map, posx, posy),
+			check_right(map, posx, posy),
+			check_down(map, posx, posy),
+			check_left(map, posx, posy),
+			check_diag_up_right(map, posx, posy),
+			check_diag_down_right(map, posx, posy),
+			check_diag_down_left(map, posx, posy),
+			check_diag_up_left(map, posx, posy)};
 
 	for (int i = 0; i < 8; ++i) {
 		occurence = find_occurence(next_to, next_to[i]);

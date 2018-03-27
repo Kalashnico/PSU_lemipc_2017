@@ -15,9 +15,11 @@ CFLAGS += -W -Wall -Wextra -Werror
 
 SRCS	= main.c		\
 	  map.c			\
+	  map2.c		\
 	  components.c		\
 	  player.c		\
 	  player_ai.c		\
+	  player_ai2.c		\
 	  player_control.c	\
 	  check_diag.c		\
 	  check_side.c		\

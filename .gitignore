@@ -4,3 +4,4 @@ lemipc
 CMakeLists.txt
 .idea/
 cmake-build-debug/
+.vscode/settings.json

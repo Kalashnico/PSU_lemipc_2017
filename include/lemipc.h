@@ -31,6 +31,7 @@ typedef struct player_s {
 	int semid;
 	int posx;
 	int posy;
+	enum direction last_dir;
 	int team;
 	bool is_host;
 	bool is_alive;
@@ -45,6 +46,9 @@ void display_map(int**);
 void put_player_on_map(player_t*, int**);
 int **load_map(player_t*);
 
+/* map2.c */
+int has_won_inner_loop(int**, int, int);
+
 /* player.c */
 bool check_killed(player_t*, int**);
 int **suicide(player_t*, int**);
@@ -54,8 +58,15 @@ player_t *init_player(player_t*, int, char*);
 /* player_ai.c */
 void check_possible_move(player_t*, int**);
 
+/* player_ai2.c */
+int calculate_distances_ally(player_t*, int**, int, int*);
+int calculate_distances_enemy(player_t*, int**, int, int*);
+bool check_player_stuck(player_t*, enum direction);
+
 /* player_control.c */
-void	move_player(enum direction, player_t *, int **);
+bool move_right(player_t*, int**, enum direction);
+bool move_left(player_t*, int**, enum direction);
+void move_player(enum direction, player_t *, int **);
 
 /* check*.c */
 int check_diag_up_left(int **, int, int);
@@ -69,4 +80,5 @@ int check_right(int **, int, int);
 int check_left(int **, int, int);
 
 /* utils.c */
+bool wait_for_connections(int, int**);
 int absolute(int);
