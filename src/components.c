@@ -5,6 +5,7 @@
 ** Components (map, player)
 */
 
+#include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/ipc.h>
@@ -37,16 +38,19 @@ bool wait_for_connections(int host_team, int **map)
 
 void loop(player_t *player, int **map)
 {
+	while (!wait_for_connections(player->team, map));
 	if (player->is_host)
-		while (!wait_for_connections(player->team, map));
-	while ((player->is_alive || player->is_host) && has_won(map) == 0) {
-		if (player->is_host)
 			display_map(map);
+	while ((player->is_alive || player->is_host) && has_won(map) == 0) {
+		sleep(1);
 		if (player->is_host && !player->is_alive)
 			continue;
 		if (check_killed(player, map))
 			suicide(player, map);
-		check_possible_move(player, map);
+		else
+			check_possible_move(player, map);
+		if (player->is_host)
+			display_map(map);
 	}
 	if (has_won(map) != 0)
 		printf("The team %d has won!\n", has_won(map));

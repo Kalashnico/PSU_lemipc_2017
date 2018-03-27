@@ -13,16 +13,30 @@ void	move_player(enum direction move_dir, player_t *player, int **map)
 	int posy = player->posy;
 
 	switch (move_dir) {
-		case UP: if (map[posx - 1][posy] == 0)
+		case UNDEFINED:
+			return;
+		case UP:
+			if (posx - 1 < 0)
+				return;
+			if (map[posx - 1][posy] == 0)
 				player->posx -= 1;
 			break;
-		case RIGHT: if (map[posx][posy + 1] == 0)
+		case RIGHT:
+			if (posy + 1 >= MAP_HEIGHT)
+				return;
+			if (map[posx][posy + 1] == 0)
 				player->posy += 1;
 			break;
-		case DOWN: if (map[posx + 1][posy] == 0)
+		case DOWN:
+			if (posx + 1 >= MAP_WIDTH)
+				return;
+			if (map[posx + 1][posy] == 0)
 				player->posx += 1;
 			break;
-		case LEFT: if (map[posx][posy - 1] == 0)
+		case LEFT:
+			if (posy - 1 < 0)
+				return;
+			if (map[posx][posy - 1] == 0)
 				player->posy -= 1;
 			break;
 	}

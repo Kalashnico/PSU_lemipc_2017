@@ -21,6 +21,7 @@ SRCS	= main.c		\
 	  player_control.c	\
 	  check_diag.c		\
 	  check_side.c		\
+	  utils.c		\
 
 OBJS    = $(addprefix src/, $(SRCS:.c=.o))
 

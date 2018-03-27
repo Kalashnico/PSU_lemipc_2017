@@ -80,10 +80,10 @@ bool check_killed(player_t *player, int **map)
 
 int **suicide(player_t *player, int **map)
 {
+	map[player->posx][player->posy] = 0;
 	semctl(player->semid, 0, IPC_RMID);
 	player->is_alive = false;
 	printf("A player of the team %d has died!\n", player->team);
-	map[player->posx][player->posy] = 0;
 	return (map);
 }
 
