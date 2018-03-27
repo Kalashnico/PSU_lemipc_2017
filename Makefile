@@ -17,6 +17,8 @@ SRCS	= main.c		\
 	  map.c			\
 	  components.c		\
 	  player.c		\
+	  check_diag.c		\
+	  check_side.c
 
 OBJS    = $(addprefix src/, $(SRCS:.c=.o))
 

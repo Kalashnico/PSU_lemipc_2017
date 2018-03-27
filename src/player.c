@@ -40,3 +40,44 @@ player_t *init_player(player_t *player, int team)
 	player->posy = rand() % MAP_HEIGHT;
 	return (player);
 }
+
+int     find_occurence(const int map[8], int value)
+{
+        int nb_occurence = 0;
+
+        for (int i = 0; i < 8; ++i) {
+                if (value == map[i])
+                        ++nb_occurence;
+        }
+        return nb_occurence;
+}
+
+bool	check_killed(player_t *player, int **map)
+{
+        int occurence = 0;
+        int next_to[8] = {check_up(map, player),
+                          check_right(map, player),
+                          check_down(map, player),
+                          check_left(map, player),
+                          check_diag_up_right(map, player),
+                          check_diag_down_right(map, player),
+                          check_diag_down_left(map, player),
+                          check_diag_up_left(map, player)};
+
+        for (int i = 0; i < 8; ++i) {
+                occurence = find_occurence(next_to, next_to[i]);
+                if (occurence > 1) {
+                        return (true);
+                }
+        }
+
+	return (false);
+}
+
+int	**suicide(player_t *player, int **map)
+{
+	semctl(player->semid, 0, IPC_RMID);
+	map[player->posx][player->posy] = 0;
+        return (map);
+}
+
