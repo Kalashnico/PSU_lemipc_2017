@@ -13,7 +13,7 @@
 #include <sys/shm.h>
 #include "lemipc.h"
 
-bool has_won(int **map)
+int has_won(int **map)
 {
 	int team = 0;
 
@@ -22,12 +22,12 @@ bool has_won(int **map)
 			if (map[x][y] != 0) {
 				if (team == 0)
 					team = map[x][y];
-				else if (team != map[x][y])
-					return (false);
+				else if (team != map[x][y] && map[x][y] != 0)
+					return (0);
 			}
 		}
 	}
-	return (true);
+	return (team);
 }
 
 void display_map(int **map)

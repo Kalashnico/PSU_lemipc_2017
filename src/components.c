@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <sys/shm.h>
@@ -23,11 +24,31 @@ void clear_ipc(player_t *player)
 	shmctl(player->shmid, 0, IPC_RMID);
 }
 
+bool wait_for_connections(int host_team, int **map)
+{
+	for (int x = 0; x < MAP_WIDTH; x++) {
+		for (int y = 0; y < MAP_HEIGHT; y++) {
+			if (map[x][y] != host_team && map[x][y] != 0)
+				return (true);
+		}
+	}
+	return (false);
+}
+
 void loop(player_t *player, int **map)
 {
 	if (player->is_host)
-		display_map(map);
-	//while (player->is_alive || (player->is_host && !has_won(map)))
+		while (!wait_for_connections(player->team, map));
+	while ((player->is_alive || player->is_host) && has_won(map) == 0) {
+		if (player->is_host)
+			display_map(map);
+		if (player->is_host && !player->is_alive)
+			continue;
+		if (check_killed(player, map))
+			suicide(player, map);
+	}
+	if (has_won(map) != 0)
+		printf("The team %d has won!\n", has_won(map));
 }
 
 int init_components(char *path, int team)

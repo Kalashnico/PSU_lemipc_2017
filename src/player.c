@@ -9,6 +9,7 @@
 #include <sys/sem.h>
 #include <sys/shm.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 #include "lemipc.h"
 
@@ -46,7 +47,7 @@ int find_occurence(const int map[8], int value)
 	int nb_occurence = 0;
 
 	for (int i = 0; i < 8; ++i) {
-		if (value == map[i])
+		if (value == map[i] && value != 0)
 			++nb_occurence;
 	}
 	return (nb_occurence);
@@ -68,12 +69,15 @@ bool check_killed(player_t *player, int **map)
 		occurence = find_occurence(next_to, next_to[i]);
 		if (occurence > 1)
 			return (true);
+	}
 	return (false);
 }
 
 int **suicide(player_t *player, int **map)
 {
 	semctl(player->semid, 0, IPC_RMID);
+	player->is_alive = false;
+	printf("A player of the team %d has died!\n", player->team);
 	map[player->posx][player->posy] = 0;
 	return (map);
 }

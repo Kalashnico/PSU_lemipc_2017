@@ -32,11 +32,14 @@ typedef struct player_s {
 int init_components(char*, int);
 
 /* map.c */
+int has_won(int**);
 void display_map(int**);
 void put_player_on_map(player_t*, int**);
 int **load_map(player_t*);
 
 /* player.c */
+bool check_killed(player_t*, int**);
+int **suicide(player_t*, int**);
 player_t *create_player_sem(player_t*);
 player_t *init_player(player_t*, int);
 
@@ -50,4 +53,3 @@ int check_up(int **, player_t *);
 int check_down(int **, player_t *);
 int check_right(int **, player_t *);
 int check_left(int **, player_t *);
-
