@@ -23,6 +23,13 @@ void clear_ipc(player_t *player)
 	shmctl(player->shmid, 0, IPC_RMID);
 }
 
+void loop(player_t *player, int **map)
+{
+	if (player->is_host)
+		display_map(map);
+	//while (player->is_alive || (player->is_host && !has_won(map)))
+}
+
 int init_components(char *path, int team)
 {
 	int **map = NULL;
@@ -39,8 +46,9 @@ int init_components(char *path, int team)
 		return (84);
 	create_player_sem(player);
 	put_player_on_map(player, map);
-	display_map(map);
-	clear_ipc(player);
+	loop(player, map);
+	if (player->is_host)
+		clear_ipc(player);
 	free_ressources(player, map);
 	return (0);
 }

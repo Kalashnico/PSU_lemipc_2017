@@ -13,6 +13,23 @@
 #include <sys/shm.h>
 #include "lemipc.h"
 
+bool has_won(int **map)
+{
+	int team = 0;
+
+	for (int x = 0; x < MAP_WIDTH; ++x) {
+		for (int y = 0; y < MAP_HEIGHT; ++y) {
+			if (map[x][y] != 0) {
+				if (team == 0)
+					team = map[x][y];
+				else if (team != map[x][y])
+					return (false);
+			}
+		}
+	}
+	return (true);
+}
+
 void display_map(int **map)
 {
 	printf("------------------------------\n");
@@ -63,6 +80,7 @@ int **load_map(player_t *player)
 		if (map == (void*)-1)
 			return (NULL);
 		map = create_map(map, true);
+		player->is_host = true;
 	} else {
 		map = shmat(player->shmid, NULL, SHM_R | SHM_W);
 		if (map == (void*)-1)
@@ -70,21 +88,4 @@ int **load_map(player_t *player)
 		map = create_map(map, false);
 	}
 	return (map);
-}
-
-bool has_won(int **map)
-{
-	int team = 0;
-
-	for (int x = 0; x < MAP_HEIGHT; ++x) {
-		for (int y = 0; y < MAP_WIDTH; ++y) {
-			if (map[x][y] != 0) {
-				if (team == 0)
-					team = map[x][y];
-				else if (team != map[x][y])
-					return (false);
-			}
-		}
-	}
-	return (true);
 }
