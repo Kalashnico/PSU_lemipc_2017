@@ -18,6 +18,7 @@
 #define MAP_WIDTH 20
 
 enum direction {
+	UNDEFINED,
 	UP,
 	RIGHT,
 	LEFT,
