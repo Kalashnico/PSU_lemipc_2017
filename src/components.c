@@ -46,6 +46,7 @@ void loop(player_t *player, int **map)
 			continue;
 		if (check_killed(player, map))
 			suicide(player, map);
+		check_possible_move(player, map);
 	}
 	if (has_won(map) != 0)
 		printf("The team %d has won!\n", has_won(map));
