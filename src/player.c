@@ -35,13 +35,15 @@ player_t *init_player(player_t *player, int team, char *path)
 		return (NULL);
 	player->team = team;
 	player->is_alive = true;
-	player->is_host = false;
 	player->key = ftok(path, 0);
-	if (player->key == -1)
+	if (player->key == -1) {
+		free(player);
 		return (NULL);
+	}
 	srand(time(0));
 	player->posx = rand() % MAP_WIDTH;
 	player->posy = rand() % MAP_HEIGHT;
+	player->is_host = false;
 	return (player);
 }
 
