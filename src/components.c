@@ -70,7 +70,7 @@ int init_components(char *path, int team, bool cleanup)
 	create_player_sem(player);
 	put_player_on_map(player, map);
 	if (cleanup)
-		return (clear_ipc(player), 0);
+		return (clear_ipc(player), free_ressources(player, map), 0);
 	loop(player, map);
 	if (player->is_host)
 		clear_ipc(player);
