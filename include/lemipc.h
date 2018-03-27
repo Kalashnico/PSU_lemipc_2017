@@ -44,15 +44,17 @@ void display_map(int**);
 void put_player_on_map(player_t*, int**);
 int **load_map(player_t*);
 
-
-/* player_control.c */
-void	move_player(enum direction, player_t *, int **);
-
 /* player.c */
 bool check_killed(player_t*, int**);
 int **suicide(player_t*, int**);
 player_t *create_player_sem(player_t*);
 player_t *init_player(player_t*, int, char*);
+
+/* player_ai.c */
+void check_possible_move(player_t*, int**);
+
+/* player_control.c */
+void	move_player(enum direction, player_t *, int **);
 
 /* check*.c */
 int check_diag_up_left(int **, player_t *);
