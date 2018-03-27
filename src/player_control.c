@@ -7,12 +7,12 @@
 
 #include "lemipc.h"
 
-void	move_player(enum direction dir, player_t *player, int **map)
+void	move_player(enum direction move_dir, player_t *player, int **map)
 {
 	int posx = player->posx;
 	int posy = player->posy;
 
-	switch (dir) {
+	switch (move_dir) {
 		case UP: if (map[posx - 1][posy] == 0)
 				player->posx -= 1;
 			break;
