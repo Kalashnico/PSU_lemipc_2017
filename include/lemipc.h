@@ -24,6 +24,8 @@ typedef struct player_s {
 	int posx;
 	int posy;
 	int team;
+	bool is_host;
+	bool is_alive;
 }	player_t;
 
 /* components.c */

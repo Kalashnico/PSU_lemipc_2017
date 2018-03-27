@@ -33,6 +33,8 @@ player_t *init_player(player_t *player, int team)
 	if (player == NULL)
 		return (NULL);
 	player->team = team;
+	player->is_alive = true;
+	player->is_host = false;
 	srand(time(0));
 	player->posx = rand() % MAP_WIDTH;
 	player->posy = rand() % MAP_HEIGHT;
