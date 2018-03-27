@@ -51,22 +51,21 @@ void loop(player_t *player, int **map)
 		printf("The team %d has won!\n", has_won(map));
 }
 
-int init_components(char *path, int team)
+int init_components(char *path, int team, bool cleanup)
 {
 	int **map = NULL;
 	player_t *player = NULL;
 
-	player = init_player(player, team);
+	player = init_player(player, team, path);
 	if (player == NULL)
-		return (84);
-	player->key = ftok(path, 0);
-	if (player->key == -1)
 		return (84);
 	map = load_map(player);
 	if (map == NULL)
 		return (84);
 	create_player_sem(player);
 	put_player_on_map(player, map);
+	if (cleanup)
+		return (clear_ipc(player), 0);
 	loop(player, map);
 	if (player->is_host)
 		clear_ipc(player);

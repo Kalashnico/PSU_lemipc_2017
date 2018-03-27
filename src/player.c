@@ -28,7 +28,7 @@ player_t *create_player_sem(player_t *player)
 	return (player);
 }
 
-player_t *init_player(player_t *player, int team)
+player_t *init_player(player_t *player, int team, char *path)
 {
 	player = malloc(sizeof(player_t));
 	if (player == NULL)
@@ -36,6 +36,9 @@ player_t *init_player(player_t *player, int team)
 	player->team = team;
 	player->is_alive = true;
 	player->is_host = false;
+	player->key = ftok(path, 0);
+	if (player->key == -1)
+		return (NULL);
 	srand(time(0));
 	player->posx = rand() % MAP_WIDTH;
 	player->posy = rand() % MAP_HEIGHT;

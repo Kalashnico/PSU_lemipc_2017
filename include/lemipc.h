@@ -29,7 +29,7 @@ typedef struct player_s {
 }	player_t;
 
 /* components.c */
-int init_components(char*, int);
+int init_components(char*, int, bool);
 
 /* map.c */
 int has_won(int**);
@@ -41,7 +41,7 @@ int **load_map(player_t*);
 bool check_killed(player_t*, int**);
 int **suicide(player_t*, int**);
 player_t *create_player_sem(player_t*);
-player_t *init_player(player_t*, int);
+player_t *init_player(player_t*, int, char*);
 
 /* check*.c */
 int check_diag_up_left(int **, player_t *);
