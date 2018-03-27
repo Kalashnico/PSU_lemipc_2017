@@ -16,14 +16,14 @@ int check_left(int **map, int posx, int posy)
 
 int check_right(int **map, int posx, int posy)
 {
-	if (posy < MAP_HEIGHT)
+	if (posy < MAP_HEIGHT - 1)
 		return (map[posx][posy + 1]);
 	return (0);
 }
 
 int check_down(int **map, int posx, int posy)
 {
-	if (posx < MAP_WIDTH)
+	if (posx < MAP_WIDTH - 1)
 		return (map[posx + 1][posy]);
 	return (0);
 }

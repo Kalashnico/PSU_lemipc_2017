@@ -16,21 +16,21 @@ int check_diag_up_left(int **map, int posx, int posy)
 
 int check_diag_up_right(int **map,int posx, int posy)
 {
-	if (posx > 0 && posy < MAP_HEIGHT)
+	if (posx > 0 && posy < MAP_HEIGHT - 1)
 		return (map[posx - 1][posy + 1]);
 	return (0);
 }
 
 int check_diag_down_left(int **map, int posx, int posy)
 {
-	if (posx < MAP_WIDTH && posy > 0)
+	if (posx < MAP_WIDTH - 1 && posy > 0)
 		return (map[posx + 1][posy - 1]);
 	return (0);
 }
 
 int check_diag_down_right(int **map,int posx, int posy)
 {
-	if (posx < MAP_WIDTH && posy < MAP_HEIGHT)
+	if (posx < MAP_WIDTH - 1 && posy < MAP_HEIGHT - 1)
 		return (map[posx + 1][posy + 1]);
 	return (0);
 }
