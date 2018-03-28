@@ -41,7 +41,7 @@ void put_player_on_map(player_t *player, int **map)
 	if (map[player->posx][player->posy] == 0)
 		map[player->posx][player->posy] = player->team;
 	else {
-		srand(time(0));
+		srand(time(0) + player->semid);
 		player->posx = rand() % MAP_WIDTH;
 		player->posy = rand() % MAP_HEIGHT;
 		put_player_on_map(player, map);

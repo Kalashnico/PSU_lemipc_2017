@@ -40,7 +40,7 @@ player_t *init_player(player_t *player, int team, char *path)
 		free(player);
 		return (NULL);
 	}
-	srand(time(0));
+	srand(time(0) + (player->key * MAP_HEIGHT * MAP_WIDTH) % team);
 	player->posx = rand() % MAP_WIDTH;
 	player->posy = rand() % MAP_HEIGHT;
 	player->last_dir = UNDEFINED;
